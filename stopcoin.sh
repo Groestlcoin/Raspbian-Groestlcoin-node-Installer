@@ -1,14 +1,14 @@
 #!/bin/bash -e
-date >> /home/pi/.bitcoin/running.log
+date >> /home/pi/.groestlcoin/running.log
 
-if [ "$(pidof bitcoind)" ]
+if [ "$(pidof groestlcoind)" ]
 then
-   echo sync at block >> /home/pi/.bitcoin/running.log
-	/usr/local/bin/bitcoind getblockcount >> /home/pi/.bitcoin/running.log
+   echo sync at block >> /home/pi/.groestlcoin/running.log
+	/usr/local/bin/groestlcoind getblockcount >> /home/pi/.groestlcoin/running.log
 
 else
 
-	/usr/local/bin/bitcoind -dns -noupnp -maxconnections=12 -timeout=120 -noirc -gen=0 -maxorphantx=15 -maxorphanblocks=15 -dbcache=5 -daemon -checkblocks=25 -maxreceivebuffer=1250 -maxsendbuffer=250 -disablewallet &
-	echo was dead >> /home/pi/.bitcoin/running.log
+	/usr/local/bin/groestlcoind -dns -noupnp -maxconnections=12 -timeout=120 -noirc -gen=0 -dbcache=5 -daemon -checkblocks=25 -maxreceivebuffer=1250 -maxsendbuffer=250 -disablewallet &
+	echo was dead >> /home/pi/.groestlcoin/running.log
 
   fi
